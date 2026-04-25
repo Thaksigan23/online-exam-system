@@ -1,0 +1,149 @@
+.container {
+    max-width: 960px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(118, 75, 162, 0.6);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: fadeIn 0.8s ease forwards;
+  }
+  
+  .title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  
+  .error {
+    color: #ff6b6b;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .noResults {
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #d1d5db;
+  }
+  
+  .resultsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
+    animation: slideIn 1s ease forwards;
+  }
+  
+  .resultsTable th,
+  .resultsTable td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+  }
+  
+  .resultsTable thead {
+    background: rgba(255, 255, 255, 0.25);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .rowEven {
+    background: rgba(255, 255, 255, 0.07);
+    transition: background-color 0.3s ease;
+  }
+  
+  .rowOdd {
+    background: rgba(255, 255, 255, 0.12);
+    transition: background-color 0.3s ease;
+  }
+  
+  .resultsTable tr:hover {
+    background-color: rgba(118, 75, 162, 0.6);
+    cursor: pointer;
+  }
+  
+  .highScore {
+    color: #22c55e;
+    font-weight: 700;
+    text-shadow: 0 0 8px #22c55e;
+  }
+  
+  .mediumScore {
+    color: #fbbf24;
+    font-weight: 700;
+    text-shadow: 0 0 8px #fbbf24;
+  }
+  
+  .lowScore {
+    color: #ef4444;
+    font-weight: 700;
+    text-shadow: 0 0 8px #ef4444;
+  }
+  
+  .detailsSummary {
+    cursor: pointer;
+    color: #a78bfa;
+    font-weight: 600;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  
+  .detailsSummary:hover {
+    color: #d8b4fe;
+  }
+  
+  .answerList {
+    margin-top: 8px;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-left: 1rem;
+  }
+  
+  .correctAnswer {
+    color: #22c55e;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .wrongAnswer {
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  /* Animations */
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  

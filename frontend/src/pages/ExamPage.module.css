@@ -1,0 +1,45 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: linear-gradient(to right, #f4f6fa, #eaeef5);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.questionCard {
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.optionLabel {
+  display: block;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.submitBtn, .btn {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.resultBox {
+  text-align: center;
+  background: #f0fff0;
+  padding: 1.5rem;
+  border-radius: 10px;
+}

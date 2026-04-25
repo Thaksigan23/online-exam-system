@@ -1,0 +1,109 @@
+.wrapper {
+  height: 100vh;
+  background: linear-gradient(135deg, #fc5c7d, #6a82fb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+.card {
+  position: relative;
+  padding: 50px 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  min-height: 500px;
+  text-align: center;
+  animation: float 6s ease-in-out infinite;
+  z-index: 1;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5, #66ffff, #fcb045, #ff6ec4);
+  z-index: -1;
+  background-size: 300% 300%;
+  animation: gradientBorder 6s ease infinite;
+  border-radius: 22px;
+}
+
+.title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 0px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 15px;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6a82fb;
+  box-shadow: 0 0 12px #6a82fbaa;
+  background: #fff;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.loginLink {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.loginLink a {
+  color: #6b46c1;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

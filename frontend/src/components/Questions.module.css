@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.container {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8 0%, #a1c4fd 100%);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  color: #1e293b;
+  animation: fadeIn 1s ease forwards;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2563eb;
+  text-shadow: 1px 1px 3px #93c5fd;
+}
+
+.subTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1e40af;
+  text-align: center;
+  text-shadow: 1px 1px 2px #bfdbfe;
+}
+
+.section {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.25);
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.section:hover {
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+}
+
+.centerBox {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.inputWide {
+  flex: 1 1 70%;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #2563eb;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputWide:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 8px #4f46e5aa;
+  outline: none;
+}
+
+.saveButton {
+  flex: 0 0 auto;
+  padding: 0.75rem 1.8rem;
+  background: linear-gradient(45deg, #2563eb, #4f46e5);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.6);
+  transition: background 0.4s ease, transform 0.2s ease;
+}
+
+.saveButton:hover {
+  background: linear-gradient(45deg, #4f46e5, #2563eb);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.7);
+}
+
+.toggleButton {
+  background: linear-gradient(45deg, #10b981, #059669);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.7);
+  transition: background 0.4s ease, transform 0.2s ease;
+  display: block;
+  margin: 1rem auto 0 auto;
+}
+
+.toggleButton:hover {
+  background: linear-gradient(45deg, #059669, #10b981);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(5, 150, 105, 0.8);
+}
+
+.loading {
+  text-align: center;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}

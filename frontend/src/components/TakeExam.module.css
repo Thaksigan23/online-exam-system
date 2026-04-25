@@ -1,0 +1,150 @@
+/* Animations */
+
+@keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes pulseText {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+  
+  @keyframes bounceHover {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Styles */
+  
+  .page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15, #ec4899);
+    background-size: 1000% 1000%;
+    animation: gradientShift 25s ease infinite;
+    padding: 20px;
+  }
+  
+  .card {
+    background: white;
+    padding: 3rem 4rem;
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    max-width: 450px;
+    width: 90%;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+  
+    background: linear-gradient(90deg, #6d28d9, #ec4899, #f59e0b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  
+    animation: pulseText 3s ease-in-out infinite;
+    user-select: none;
+  }
+  
+  .loading {
+    font-size: 1.2rem;
+    color: #9ca3af;
+    animation: pulseText 2.5s ease-in-out infinite;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .loading::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 3px solid #9ca3af;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .error {
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    user-select: none;
+  }
+  
+  .noLink {
+    color: #6b7280;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    user-select: none;
+  }
+  
+  .examButton {
+    margin-top: 2.5rem;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.5);
+  
+    transition: all 0.3s ease;
+    display: inline-block;
+  
+    animation: bounceHover 2.2s ease infinite;
+    user-select: none;
+  }
+  
+  .examButton:hover {
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    box-shadow: 0 15px 35px rgba(22, 163, 74, 0.8);
+    transform: translateY(-8px) scale(1.1);
+  }
+  
