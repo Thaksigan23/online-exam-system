@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './TeacherDashboard.module.css';
 
 function TeacherDashboard() {
@@ -29,11 +30,11 @@ function TeacherDashboard() {
       });
 
       const [resultsRes, analyticsRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/results', {
+        axios.get(apiUrl('/results'), {
           headers: { Authorization: `Bearer ${token}` },
           params,
         }),
-        axios.get('http://localhost:5000/api/results/analytics', {
+        axios.get(apiUrl('/results/analytics'), {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -58,6 +59,33 @@ function TeacherDashboard() {
   const handleSubmit = e => {
     e.preventDefault();
     fetchResults();
+  };
+
+  const downloadCsv = () => {
+    const headers = ['Student Name', 'Email', 'Exam', 'Score', 'Total', 'Submitted'];
+    const rows = results.map((r) => [
+      r.studentId?.name || '',
+      r.studentId?.email || '',
+      r.examId?.title || '',
+      r.score,
+      r.total,
+      new Date(r.submittedAt || r.createdAt).toISOString(),
+    ]);
+    const esc = (cell) => {
+      const s = String(cell ?? '');
+      if (/[",\n]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+      return s;
+    };
+    const csv = [headers.map(esc).join(','), ...rows.map((row) => row.map(esc).join(','))].join(
+      '\n'
+    );
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `exam-results-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -125,6 +153,9 @@ function TeacherDashboard() {
         />
         <button type="submit" className={styles.filterBtn}>
           Filter
+        </button>
+        <button type="button" className={styles.filterBtn} onClick={downloadCsv} disabled={!results.length}>
+          Download CSV
         </button>
       </form>
 

@@ -9,27 +9,22 @@ import authMiddleware from '../middleware/auth.js'; // ✅ Correct default impor
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
-  console.log('📥 Received registration:', req.body);
   const { name, email, password, role } = req.body;
 
   if (!name || !email || !password || !role) {
-    console.log('❌ Missing fields');
     return res.status(400).json({ message: 'All fields are required.' });
   }
 
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      console.log('⚠️ Email already registered');
       return res.status(400).json({ message: 'Email already registered.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: hashedPassword, role });
 
-    console.log('🔨 Saving user...');
     await newUser.save();
-    console.log('✅ User saved to DB:', newUser);
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {

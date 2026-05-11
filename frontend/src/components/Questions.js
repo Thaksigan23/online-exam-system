@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './Questions.module.css';
-
-const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const newQuestionBlock = () => ({
   id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -36,10 +35,10 @@ function Questions() {
     setFeedback('');
     try {
       const [qRes, linkRes] = await Promise.all([
-        axios.get(`${API}/api/questions`, {
+        axios.get(apiUrl('/questions'), {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get(`${API}/api/examlink`, {
+        axios.get(apiUrl('/examlink'), {
           headers: { Authorization: `Bearer ${token}` },
         }).catch(() => null),
       ]);
@@ -69,7 +68,7 @@ function Questions() {
     try {
       const newStatus = !isReleased;
       await axios.patch(
-        `${API}/api/questions/release`,
+        apiUrl('/questions/release'),
         { isReleased: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -123,7 +122,7 @@ function Questions() {
       });
 
       await axios.post(
-        `${API}/api/exam`,
+        apiUrl('/exam'),
         {
           title: quizTitle.trim() || 'Online Quiz',
           link: linkSlug.trim() || undefined,
@@ -310,7 +309,7 @@ function Questions() {
               const now = new Date();
               const end = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
               await axios.post(
-                `${API}/api/examlink`,
+                apiUrl('/examlink'),
                 {
                   url: examLink,
                   startTime: now.toISOString(),

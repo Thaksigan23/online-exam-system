@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './ExamPage.module.css'; // Optional styling
 import { motion } from 'framer-motion';
 
@@ -16,7 +17,7 @@ function ExamPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/exam/${link}`, {
+    axios.get(apiUrl(`/exam/${encodeURIComponent(link)}`), {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => {
@@ -37,7 +38,7 @@ function ExamPage() {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:5000/api/exam/submit',
+        apiUrl('/exam/submit'),
         { answers },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './TeacherQuestions.module.css'; // create this file for styles or adjust
 
 function TeacherQuestions() {
@@ -22,7 +23,7 @@ function TeacherQuestions() {
       setLoading(true);
       setError('');
       try {
-        const res = await axios.get('http://localhost:5000/api/questions', {
+        const res = await axios.get(apiUrl('/questions'), {
           headers: { Authorization: `Bearer ${token}` }
         });
         setQuestions(res.data.questions);
@@ -58,7 +59,7 @@ function TeacherQuestions() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/questions', form, {
+      const res = await axios.post(apiUrl('/questions'), form, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setQuestions(prev => [...prev, res.data]);
@@ -75,7 +76,7 @@ function TeacherQuestions() {
 
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/questions/${id}`, {
+      await axios.delete(apiUrl(`/questions/${id}`), {
         headers: { Authorization: `Bearer ${token}` }
       });
       setQuestions(prev => prev.filter(q => q._id !== id));
@@ -90,7 +91,7 @@ function TeacherQuestions() {
     setLoading(true);
     try {
       const newStatus = !isReleased;
-      await axios.patch('http://localhost:5000/api/questions/release', { isReleased: newStatus }, {
+      await axios.patch(apiUrl('/questions/release'), { isReleased: newStatus }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setIsReleased(newStatus);

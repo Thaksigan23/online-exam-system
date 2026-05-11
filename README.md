@@ -71,7 +71,20 @@ cd frontend
 npm start
 ```
 
-The UI calls the API at `http://localhost:5000` in several places; keep the backend on that port or update the frontend URLs consistently.
+The UI uses `REACT_APP_API_URL` when set (see `frontend/.env.example`); otherwise it defaults to `http://localhost:5000`.
+
+## Production / deployment
+
+1. **Backend**
+   - Set `CLIENT_ORIGIN` to your deployed frontend origin(s), comma-separated (CORS). Example: `https://your-app.vercel.app`
+   - Keep `MONGO_URI`, `JWT_SECRET`, and email vars as in `.env`.
+   - Optional: `AUTH_RATE_LIMIT_MAX` caps requests to `/api/auth/*` per IP per 15 minutes (default `100`).
+   - Health check: `GET /api/health` returns `{ ok: true, uptime: ... }`.
+
+2. **Frontend**
+   - Copy `frontend/.env.example` to `frontend/.env.production` (or set in your host’s env UI).
+   - Set `REACT_APP_API_URL` to your public API origin (no trailing slash), e.g. `https://api.yourdomain.com`.
+   - Rebuild: `npm run build` (CRA bakes env in at build time).
 
 ## Usage overview
 
@@ -88,6 +101,7 @@ The UI calls the API at `http://localhost:5000` in several places; keep the back
 | Questions   | `GET/POST /questions` (teacher for writes) |
 | Exam        | `GET /exam/questions`, `POST /exam/submit` (student) |
 | Results     | `GET /results/my`, `GET /results`, `GET /results/analytics` (teacher for last two) |
+| Health      | `GET /api/health` |
 
 ## Build frontend for production
 

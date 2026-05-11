@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import { useNavigate } from 'react-router-dom';
 
 function StudentList() {
@@ -21,7 +22,7 @@ function StudentList() {
 
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/users/students', {
+        const response = await axios.get(apiUrl('/auth/students'), {
           headers: { Authorization: `Bearer ${token}` },
         });
         setStudents(response.data);

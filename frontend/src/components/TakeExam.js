@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../config/api';
 import styles from './TakeExam.module.css';
 
 const TakeExam = () => {
@@ -10,7 +11,7 @@ const TakeExam = () => {
     const fetchExamLink = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:5000/api/examlink', {
+        const res = await fetch(apiUrl('/examlink'), {
           headers: {
             Authorization: `Bearer ${token}`,
           },

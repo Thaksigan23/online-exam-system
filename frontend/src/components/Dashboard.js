@@ -15,6 +15,7 @@ import {
   Line,
 } from 'recharts';
 import { getUserFromToken } from '../utils/getUserFromToken';
+import { apiUrl } from '../config/api';
 import styles from './Dashboard.module.css';
 
 const COLORS = ['#22c55e', '#f97316'];
@@ -38,13 +39,13 @@ const Dashboard = () => {
       try {
         const token = localStorage.getItem('token');
         const [statsRes, historyRes] = await Promise.all([
-          fetch('http://localhost:5000/api/exam/stats', {
+          fetch(apiUrl('/exam/stats'), {
             headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           }),
-          fetch('http://localhost:5000/api/exam/history', {
+          fetch(apiUrl('/exam/history'), {
             headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',

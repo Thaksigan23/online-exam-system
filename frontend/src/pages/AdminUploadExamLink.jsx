@@ -1,20 +1,38 @@
 // pages/AdminUploadExamLink.jsx
 import React, { useState } from 'react';
+import { apiUrl } from '../config/api';
 
 function AdminUploadExamLink() {
   const [link, setLink] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setMessage('');
+    const token = localStorage.getItem('token');
+    const now = new Date();
+    const end = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-    const res = await fetch('/api/examlink', {
+    const res = await fetch(apiUrl('/examlink'), {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ link }),
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify({
+        url: link,
+        startTime: now.toISOString(),
+        endTime: end.toISOString(),
+      }),
     });
 
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setError(data.message || 'Request failed.');
+      return;
+    }
     setMessage(data.message || 'Link saved.');
   };
 
@@ -35,6 +53,7 @@ function AdminUploadExamLink() {
         </button>
       </form>
       {message && <p className="mt-2 text-green-600">{message}</p>}
+      {error && <p className="mt-2 text-red-600">{error}</p>}
     </div>
   );
 }

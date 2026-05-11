@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './ViewResults.module.css';
 
 function ViewResults() {
@@ -10,7 +11,7 @@ function ViewResults() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/results/all', {
+        const res = await axios.get(apiUrl('/results/all'), {
           headers: { Authorization: `Bearer ${token}` },
         });
         setResults(res.data);

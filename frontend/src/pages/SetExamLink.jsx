@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 
 function SetExamLink() {
   const [url, setUrl] = useState('');
@@ -19,7 +20,7 @@ function SetExamLink() {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/examlink',
+        apiUrl('/examlink'),
         { url, startTime, endTime },
         {
           headers: { Authorization: `Bearer ${token}` },

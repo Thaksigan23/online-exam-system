@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../../config/api';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Register.module.css';
 import { motion } from 'framer-motion';
@@ -30,7 +31,7 @@ function Register() {
     setLoading(true);
 
     try {
-      await axios.post('http://localhost:5000/api/auth/register', formData);
+      await axios.post(apiUrl('/auth/register'), formData);
       navigate('/login');
     } catch (err) {
       const message = err.response?.data?.message || 'Registration failed. Please try again.';

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 
 function ViewResults() {
   const [results, setResults] = useState([]);
@@ -17,7 +18,7 @@ function ViewResults() {
   const fetchResults = useCallback(async () => {
     try {
       const query = new URLSearchParams(filters).toString();
-      const res = await axios.get(`http://localhost:5000/api/results/all?${query}`, {
+      const res = await axios.get(`${apiUrl('/results/all')}?${query}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setResults(res.data);

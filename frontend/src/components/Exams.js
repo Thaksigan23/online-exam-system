@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './Exam.module.css';
-
-const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 function Exam() {
   const [examTitle, setExamTitle] = useState('');
@@ -37,7 +36,7 @@ function Exam() {
       setSubmitLoading(true);
       try {
         const res = await axios.post(
-          `${API}/api/exam/submit`,
+          apiUrl('/exam/submit'),
           { answers, autoSubmitted: isAutoSubmit },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -61,7 +60,7 @@ function Exam() {
       setError('');
       setAlreadySubmitted(false);
       try {
-        const res = await axios.get(`${API}/api/exam/questions`, {
+        const res = await axios.get(apiUrl('/exam/questions'), {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExamTitle(res.data.title || 'Quiz');
@@ -186,6 +185,14 @@ function Exam() {
             </div>
           )}
         </div>
+      )}
+
+      {!result && !alreadySubmitted && questions.length > 0 && (
+        <p className={styles.bannerInfo} role="status" aria-live="polite">
+          Progress:{' '}
+          <strong>{questions.filter((q) => answers[q._id]).length}</strong> of{' '}
+          <strong>{questions.length}</strong> questions answered
+        </p>
       )}
 
       {!result && !alreadySubmitted && durationSeconds > 0 && questions.length > 0 && (

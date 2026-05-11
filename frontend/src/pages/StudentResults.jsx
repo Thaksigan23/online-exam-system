@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 import styles from './StudentResults.module.css';
 import { motion } from 'framer-motion';
 
@@ -13,7 +14,7 @@ function StudentResults() {
     const fetchResults = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/results/my', {
+        const res = await axios.get(apiUrl('/results/my'), {
           headers: { Authorization: `Bearer ${token}` }
         });
         setResults(res.data);

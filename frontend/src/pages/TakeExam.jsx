@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 
 function TakeExam() {
   const [isReleased, setIsReleased] = useState(false);
@@ -12,7 +13,7 @@ function TakeExam() {
 useEffect(() => {
   const fetchStatusAndLink = async () => {
     try {
-      const linkRes = await axios.get('http://localhost:5000/api/examlink', {
+      const linkRes = await axios.get(apiUrl('/examlink'), {
         headers: { Authorization: `Bearer ${token}` },
       });
 
